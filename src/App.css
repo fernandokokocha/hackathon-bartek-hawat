@@ -1,0 +1,27 @@
+.app-container {}
+
+.chat-window {
+  background-color: lightblue;
+  color: black;
+  margin: 10px;
+  padding: 5px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dialog-cloud {
+  background-color: white;
+  margin: 20px;
+  padding: 10px;
+
+  &.user {
+    align-self: flex-end;
+  }
+
+  &.assistant {
+    align-self: flex-start;
+  }
+}
