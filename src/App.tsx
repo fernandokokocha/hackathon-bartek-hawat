@@ -9,7 +9,7 @@ const deployment = "gpt-4"; //This must match your deployment name.
 const remoteRequest = async (messages: Msg[], apiKey: string): Promise<string> => {
   const client = new AzureOpenAI({ endpoint, apiKey, apiVersion, deployment, dangerouslyAllowBrowser: true });
   const remoteMessages = [
-    { role: "system", content: "Zbierasz dane do formularza PCC-3. Potrzebne dane to: PESEL, przedmiot sprzedaży, kwota sprzedaży. Dopóki nie masz wszystkich potrzebnych informacji, pytaj o szczegóły. Nie pytaj o dane które już znasz. Nie akceptuj odpowiedzi w stylu: nie wiem, nie interesuj się. Przestań rozmawiać natychmiast po uzyskaniu wszystkich potrzebnych danych i zwróć je w formacie JSON: { \"PESEL\": {PESEL}, \"object\": {przedmiot sprzedaży}, \"price\": {kwota sprzedaży} }" },
+    { role: "system", content: "Zbierasz dane do formularza PCC-3. Potrzebne dane to: PESEL (liczba 11 cyfr), przedmiot sprzedaży (minimum 3 słowa), kwota sprzedaży w PLN. Pytaj po kolei o każdą daną. Po otrzymaniu odpowiedzi natychmiast ją waliduj i nie przechodź do kolejnej danej jeśli poprzednia jest niepoprawna. Nie akceptuj odpowiedzi w stylu: nie wiem, nie interesuj się. Przestań rozmawiać natychmiast po uzyskaniu wszystkich potrzebnych danych i zwróć je w formacie JSON: { \"PESEL\": {PESEL}, \"object\": {przedmiot sprzedaży}, \"price\": {kwota sprzedaży w PLN} }" },
     ...messages
   ]
   
